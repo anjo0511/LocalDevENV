@@ -2,6 +2,9 @@
 **.DS_store
 **.idea
 **setup
-**.env
 **pgdata
 **logs
+
+venv
+
+**.env

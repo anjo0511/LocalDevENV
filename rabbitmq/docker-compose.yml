@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  rabbitmq_dev:
+    image: ${IMAGE_NAME}
+    container_name: 'rabbitmq_dev'
+    hostname: "rabbitmq_dev"
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_dev:/var/lib/rabbitmq/
+      - ./logs/:/var/log/rabbitmq/log
+      - ./enabled_plugins:/etc/rabbitmq/enabled_plugins
+      - ./definitions.json:/etc/rabbitmq/definitions.json
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      #- ./advanced.config:/etc/rabbitmq/advanced.config
+    networks:
+      - local-dev-net
+
+volumes:
+    rabbitmq_dev:
+
+networks:
+    local-dev-net:
+      external: true
+      name: local-dev-net
+

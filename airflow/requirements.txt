@@ -1,0 +1,2 @@
+# Python requirements
+apache-airflow-providers-snowflake

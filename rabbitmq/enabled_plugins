@@ -1,0 +1,1 @@
+[rabbitmq_management, rabbitmq_auth_backend_cache, rabbitmq_auth_backend_ldap, rabbit_auth_backend_ldap, rabbitmq_auth_mechanism_ssl].
