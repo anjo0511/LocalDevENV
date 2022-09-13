@@ -3,11 +3,14 @@ import psycopg2
 from dotenv import dotenv_values
 from python_on_whales import DockerClient
 import logging
+import os
+
+base_path = '/Users/anjo/Arelion/LocalDevENV/docker_compose'
 
 logging.basicConfig(level=logging.INFO, format='%(name)s - %(levelname)s ---  %(message)s')
 
-config = dotenv_values("../postgres/.env")
-airflow_config = dotenv_values(".env")
+config = dotenv_values(os.path.join(base_path,"postgres/.env"))
+airflow_config = dotenv_values(os.path.join(base_path,"airflow/.env"))
 
 logging.info("Getting .env values from postgres and airflow dirs.")
 
@@ -42,5 +45,6 @@ else:
 cur.close()
 
 
-docker = DockerClient(compose_files=["./docker-compose.yml"], compose_profiles=["init", "flower"])
-docker.compose.up(detach=True)
+docker = DockerClient(compose_files=[os.path.join(base_path,"airflow/docker-compose.yml")], compose_profiles=["init", "flower"])
+#docker.compose.up(detach=True)
+docker.compose.down()
